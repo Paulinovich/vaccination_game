@@ -1,5 +1,8 @@
 package VaccinationGame;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class Content {
@@ -7,7 +10,7 @@ public class Content {
 	 * Options: Infection, Vaccine, ImmuneSystemBoost or Win
 	 * */
 	
-	public void contentGenerator(GameField gameField, Infection[] infectionList) {
+	public void contentGenerator(GameField gameField, Infection[] allInfections) {
 		int infections = gameField.getAmountInfections();
 		int immuSysBoost = gameField.getAmountImmuneSystemBooster();
 		int width = gameField.getWidth();
@@ -15,7 +18,7 @@ public class Content {
 		// Array to save all content possibilities for Infections([0][:]), Vaccines([1][:]) and Booster([2][:]) 
 		Content[][] possibilities = new Content[3][infections];
 		
-		selectInfectionsVaccines(infectionList, infections, possibilities);
+		selectInfectionsVaccines(allInfections, infections, possibilities);
 		setImmuneSystemBoosters(immuSysBoost, possibilities);
 				
 		Field[][] cloneGameField = new Field[width][width];
@@ -31,20 +34,15 @@ public class Content {
 	}
 
 
-
-	
-
-
-
 	// Selecting and saving infections and their vaccines.
-	public void selectInfectionsVaccines(Infection[] infectionList, int infections, Content[][] possibilities) {
+	public void selectInfectionsVaccines(Infection[] allInfections, int infections, Content[][] possibilities) {
 		int k=0;	// index possibilities array infections
 		int l=0; 	// index possibilities array vaccines
 		Random rd = new Random();
+
 		for (int i=0; i<infections;i++) {
-			
-			int selectionIndex = rd.nextInt(infectionList.length-1);
-			Infection selected = infectionList[selectionIndex];
+			int selectionIndex = rd.nextInt(allInfections.length -1);
+			Infection selected = allInfections[selectionIndex];
 			possibilities[0][k] = selected;
 			if (selected.getVaccine()!=null) {
 				possibilities[1][l] = selected.getVaccine();
