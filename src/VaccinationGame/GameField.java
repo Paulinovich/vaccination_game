@@ -38,6 +38,7 @@ public class GameField {
         this.width = width;
         this.field= new Field[width][width];
         setAmounts(width);
+        System.out.println("Gamefield made\nwidth:"+this.width+"\n"+this.amountInfections+"infections\n"+this.field);
     }
     
     public void setAmounts(int width){
