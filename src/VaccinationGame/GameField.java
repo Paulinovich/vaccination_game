@@ -38,6 +38,7 @@ public class GameField {
         this.width = width;
         this.field= new Field[width][width];
         setAmounts(width);
+        System.out.println("Gamefield is made with width "+ this.width);
     }
     
     public void setAmounts(int width){

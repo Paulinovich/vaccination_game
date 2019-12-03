@@ -27,11 +27,12 @@ public class Main extends Application {
 		
 		// initialize all default Contents and save in hash table 
 		Infection[] allInfections = setupInfectionsVaccins();
-				
+		System.out.println("array of Infections passed of length "+ allInfections.length +"\nlast member is called "+ allInfections[allInfections.length-1].getName());		
 		// ask for size Game Field and generate Game Field
 		GameField gameField = setupGameField();
 		
-		
+		// set contents on random fields on
+		Content.contentGenerator(gameField, allInfections);
 	
 		
 	}
@@ -62,9 +63,9 @@ public class Main extends Application {
 		Infection typhoidFever = new Infection("Typhoid fever", 1, typhoidFeverV);
 		
 		Infection[] allInfections = new Infection[] {
-				ebola, flu, rabies, meningococcus, pneumo, polio, tetanus, cholera, hepatitisB, measels, tuberculosis, typhoidFever
+			ebola, flu, rabies, meningococcus, pneumo, polio, tetanus, cholera, hepatitisB, measels, tuberculosis, typhoidFever
 		};
-		
+		System.out.println("Vaccines and Infections default objects created");
 		return allInfections;
 	}
 	
