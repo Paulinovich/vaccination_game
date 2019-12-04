@@ -43,7 +43,7 @@ public class GameField {
     
     public void setAmounts(int width){
         int size = (int) Math.pow(width, 2);
-        setAmountInfections((int)(size*0.25));	// 25% of field, vaccins automatically as well
-        setAmountImmuneSystemBooster((int)(size*0.125));	// 12.5%
+        setAmountInfections((int) Math.round(size*0.2));	// 20% of field, vaccins automatically as well
+        setAmountImmuneSystemBooster((int) Math.round(size*0.1));	// 10%
     }
 }
