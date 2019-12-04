@@ -56,7 +56,7 @@ public class Infection extends Content{
 				}else {
 					System.out.println("saved by your vaccine!");
 			}
-		}; 
+		} 
 		
 		public void dying(GameEvent game) {
 			System.out.println("You died :(");

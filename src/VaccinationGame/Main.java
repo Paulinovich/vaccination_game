@@ -31,6 +31,7 @@ public class Main extends Application {
 		GameField gameField = setupGameField();
 		// set contents on random fields on
 		Content.contentGenerator(gameField, allInfections);
+		System.out.println("all went well");
 	
 		
 	}
@@ -59,11 +60,10 @@ public class Main extends Application {
 		Infection tuberculosis = new Infection("Tuberculosis", 2, tuberculosisV);
 		Vaccine typhoidFeverV = new Vaccine("Typhoid fever");		
 		Infection typhoidFever = new Infection("Typhoid fever", 1, typhoidFeverV);
-		
-		Infection[] allInfections = new Infection[] {
-			ebola, flu, rabies, meningococcus, pneumo, polio, tetanus, cholera, hepatitisB, measels, tuberculosis, typhoidFever
-		};
-		return allInfections;
+				
+		return new Infection[] {
+				ebola, flu, rabies, meningococcus, pneumo, polio, tetanus, cholera, hepatitisB, measels, tuberculosis, typhoidFever
+			};
 	}
 	
 	// TODO: replace keyboard input with buttons when user interface is made 

@@ -22,7 +22,7 @@ public class Content {
 		setInGameField(infections, possibilities, width, cloneGameField);
 		setEmptyFields(width, cloneGameField);
 		gameField.setField(cloneGameField);
-		
+				
 		for (int i=0; i<width; i++) {
 			for (int j=0; j<width; j++) {
 				(gameField.getField())[i][j].savingInfoNeighbors(gameField);
@@ -60,7 +60,6 @@ public class Content {
 	public static void setInGameField(int infections, Content[][] possibilities, int width, Field[][] field) {
 		for (int i=0; i<3; i++) {
 			for (int j=0; j<infections; j++) {
-				// hier irgendwo problemen oder in setItem()
 				setItem(width, field, possibilities[i][j]);
 			}
 		}
@@ -72,7 +71,7 @@ public class Content {
 	public static void setItem(int width, Field[][] field, Content content) {
 		Random rd = new Random();
 		boolean placed = false;
-		while (placed == false) {
+		while (!placed) {
 			int rdHor = rd.nextInt(width);
 			int rdVert = rd.nextInt(width);
 			// set content if field is empty
@@ -92,5 +91,6 @@ public class Content {
 			}
 		}
 	}
+	
 }
 

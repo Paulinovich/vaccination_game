@@ -42,7 +42,7 @@ public class Field {
 	public void savingInfoNeighbors(GameField gameField) {
 		Field[][] field = gameField.getField();
 		int size = field.length;
-		
+				
 		for (int i=0; i<size; i++) {
 			for (int j=0; j<size; j++) {
 				// nothing on the left
@@ -83,16 +83,19 @@ public class Field {
 					// nothing up
 					if (j==0) {
 						int[][] where = {{i+1, j}, {i-1, j}, {i, j+1}, null};
+						// Sometimes nullPointerError here
 						gameField.getField()[i][j].setNeighbors(look(field, where)); 
 					}
 					// nothing down
 					else if (j == size-1) {
 						int[][] where = {{i+1, j}, {i-1, j}, null, {i, j-1}};
+						// Sometimes nullPointerError here
 						gameField.getField()[i][j].setNeighbors(look(field, where));
 					}
 					else {
 						// look everywhere
 						int[][] where = {{i+1, j}, {i-1, j}, {i, j+1}, {i, j-1}};
+						// Sometimes nullPointerError here
 						gameField.getField()[i][j].setNeighbors(look(field, where)); 
 					}
 				}
@@ -100,22 +103,25 @@ public class Field {
 		}
 	}
 	
+	// TODO debug nullpointer error
 	public String[] look(Field[][] field, int[][] where) {
 		String[] neighbors = new String[2];
 		int infections = 0;
 		int preventions = 0;
 		for (int i=0; i<4; i++) {
-			int indexHor = where[i][0];
-			int indexVert = where[i][1];
-			Content content = field[indexHor][indexVert].getContent();
-			if (content instanceof Infection){
-				infections ++;
-			}
-			else if (content instanceof Vaccine) {
-				preventions ++;
-			}
-			else if (content instanceof ImmuneSystemBoost) {
-				preventions ++;
+			if (where[i] != null){
+				int indexHor = where[i][0];
+				int indexVert = where[i][1];
+				Content content = field[indexHor][indexVert].getContent();
+				if (content instanceof Infection){
+					infections ++;
+				}
+				else if (content instanceof Vaccine) {
+					preventions ++;
+				}
+				else if (content instanceof ImmuneSystemBoost) {
+					preventions ++;
+				}
 			}
 		}
 		neighbors[0] = "Infections: " + infections;
